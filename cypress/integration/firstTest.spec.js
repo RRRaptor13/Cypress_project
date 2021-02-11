@@ -1,49 +1,47 @@
 /// <reference types="Cypress" />
-// describe('Mobile phone replenishment', () => {
 
-//    context("Replenishment less than the allowed amount", () => {
-//        it("Show error: Minimum amount of the repenishment 1 UAH", () => {});
-//    });
+describe('Mobile phone replenishment', () => {
 
-// })
+   context("Replenishment less than the allowed amount", () => {
+       it("Show error: Minimum amount of the repenishment 1 UAH", () => {});
+   });
 
-//Comment
-//com2 
+})
 
-// it ('By ID', () => {
-//     cy.visit("https://facebook.com/")
-//     cy.get('#email')
-// })
+it ('By ID', () => {
+    cy.visit("https://facebook.com/")
+    cy.get('#email')
+})
 
-// it ('By Class', () => {
-//     cy.visit("https://docs.cypress.io/api/api/table-of-contents.html")
-//     cy.get('.ds-input')
-// })
+it ('By Class', () => {
+    cy.visit("https://docs.cypress.io/api/api/table-of-contents.html")
+    cy.get('.ds-input')
+})
 
-// it ('By Tag', () => {
-//     cy.visit("https://docs.cypress.io/api/api/table-of-contents.html")
-//     cy.get('nav')
-// })
+it ('By Tag', () => {
+    cy.visit("https://docs.cypress.io/api/api/table-of-contents.html")
+    cy.get('nav')
+})
 
-// it ('By Tag Value', () => {
-//     cy.visit("https://facebook.com/")
-//     cy.get('[name="pass"]')
-// })
+it ('By Tag Value', () => {
+    cy.visit("https://facebook.com/")
+    cy.get('[name="pass"]')
+})
 
-// it ('By Different Tag', () => {
-//     cy.visit("https://facebook.com/")
-//     cy.get('[data-testid="open-registration-form-button"]')
-// })
+it ('By Different Tag', () => {
+    cy.visit("https://facebook.com/")
+    cy.get('[data-testid="open-registration-form-button"]')
+})
 
-// it ('By Different Types', () => {
-//     cy.visit("https://docs.cypress.io/api/api/table-of-contents.html")
-//     cy.get('button[type="button"][title="close banner"]')
-// })
+it ('By Different Types', () => {
+    cy.visit("https://docs.cypress.io/api/api/table-of-contents.html")
+    cy.get('button[type="button"][title="close banner"]')
+})
 
-// it.only ('By Contains name', () => {
-//     cy.visit("https://next.privat24.ua/")
-//     cy.get('*[class^="card"]')
-// })
+it.only ('By Contains name', () => {
+    cy.visit("https://next.privat24.ua/")
+    cy.get('*[class^="card"]')
+})
 
 it ('Using Get with Find Eq', () => {
     cy.visit("https://next.privat24.ua/deposit/open")
