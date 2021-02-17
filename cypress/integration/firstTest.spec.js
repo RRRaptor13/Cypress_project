@@ -43,3 +43,4 @@ it.only('check is correct URL', ()=>{
     cy.url()
         .should('eq', 'https://next.privat24.ua/?lang=en')
 })
+//1
