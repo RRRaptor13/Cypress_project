@@ -1,95 +1,39 @@
 /// <reference types="Cypress" />
+import { mobileReplenishment } from "../support/pages/mobileReplenishment"
+import { transfers } from "../support/pages/transfers";
 
-it('type', ()=>{
+it.only('Replenishment of Unkraine mobile phone number', ()=> {
     cy.visit('https://next.privat24.ua/mobile?lang=en')
-        .get('[data-qa-node="phone-number"]')
-        .type(112233344)
-})
 
-it('focus', ()=>{
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-        .get('[data-qa-node="amount"]')
-        .focus(112233344)
-})
+    mobileReplenishment.typePhoneNumber('686979712');
+    mobileReplenishment.typeAmount('1');
+    mobileReplenishment.typeDebitCardData('4552331448138217', '0524', '111');
+    cy.wait(3000)
+    mobileReplenishment.submitPayment();
+    mobileReplenishment.checkDebitCard('4552 **** **** 8217');
+    mobileReplenishment.checkDebitAmount('1');
+    mobileReplenishment.checkDebitAmountAndComission('2');
+    mobileReplenishment.checkReceiverAmount('1');
+    mobileReplenishment.checkPaymentCurrency('UAH');    
+            
+});
 
-it('blur', ()=>{
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-        .get('[data-qa-node="amount"]')
-        .focus()
-        .blur()
-})
+it('Money transfer between foreign cards', ()=> {
+    cy.visit('https://next.privat24.ua/money-transfer/card?lang=en')
 
-it('clear', ()=>{
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-        .get('[data-qa-node="amount"]')
-        .type(999)
-        .wait(2000)
-        .clear()
-})
-
-it('submit', ()=>{
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-        .get('form[method="post"]')
-        .submit()
-})
-
-it('click', ()=>{
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-        .get('[data-qa-value="manual"]')
-        .click()
-})
-
-it('rightclick', ()=>{
-    cy.visit('https://example.cypress.io/commands/actions')
-        .contains('Right click to edit')
-        .rightclick()
-})
-
-it('dblclick', ()=>{
-    cy.visit('https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Element/dblclick_event/_samples_/Examples')
-        .contains('My Card')
-        .dblclick()
-})
-
-it('check', ()=>{
-    cy.visit('https://www.facebook.com/reg/')
-        .get('input[value="2"]')
-        .check()
-})
-
-it('uncheck', ()=>{
-    cy.visit('https://en.privatbank.ua/')
-        .get('#switch-input')
-        .check({force: true})
-        .wait(2000)
-        .uncheck({force: true})
-})
-
-it('select', ()=>{
-    cy.visit('https://www.facebook.com/r.php?locale=en_US')
-        .get('#month')
-        .select('Feb')
-        .get('#day')
-        .select('12')
-        .get('#year')
-        .select('1991')
-})
-
-it('scrollIntoView', ()=>{
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-    .get('[data-qa-node="lang"]')
-    .wait(2000)
-    .scrollIntoView() 
-})
-
-it('scrollTo', ()=>{
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.scrollTo(0, 500)
-})
-
-it.only('trigger', ()=>{
-    cy.visit('https://next.privat24.ua/?lang=en')
-        .contains('Services')
-        .wait(2000)
-        .trigger('mouseover')
-})
+    transfers.typeDebitCardData('4552331448138217', '0524', '111');
+    transfers.typeDebitNameAndSurname('Shayne', 'McConnell');
+    transfers.typeReceiverCard('5309233034765085');
+    transfers.typeRecieverNameAndSurname('Juliana', 'Janssen');
+    transfers.typeAmount('300');
+    transfers.typeComment('Cypress test');       
+    cy.wait(2000)
+    transfers.submitPayment();
+    transfers.checkDebitAndReceiverCards('* 8217', '* 5085');
+    transfers.checkDebitAmountAndTotalAmount('300 UAH', '388.40');
+    transfers.checkDebitAmountAndTotalAmount('88.40 UAH');     
+    transfers.checkTotalCurrency('UAH');
+    transfers.CheckComment('Cypress test');
+       
+       
+});
